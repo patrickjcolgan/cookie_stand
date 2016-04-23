@@ -12,29 +12,30 @@ var pikePlace = {
     return Math.floor(Math.random() * (this.max - this.min) + this.min);
   },
   //use for loop to generate a random number and multiply it by the average and stick in hourly sales. add to total sales
-  generateHourly: function (){
+  generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)))
+      // this.totalSales[i]+= this.hourlySales[i];
+      this.totalSales = this.totalSales + this.hourlySales[i];
     }
   }
 }
-// randomCustomer(this.max, this.min);
-
-//create a for loop that generates the sales for each hour the store is open
-//where to put Math.floor??
-
-//get random customer
-
-
-
-
-// render: function() {
-//   var liEl = document.createElement("ul");
-//   var keys = Object.keys(this);
-//   for (var i = 0; i < hoursOpen.length; i++) {
-//     var liEl = document.createElement("li");
-//     liEl.textContent = this(keys[i]);
-//     ulEl.appendChild(liEl);
+// var sectionEl = document.getElementById('myList');
+// var ulEl = document.createElement('ul');
+//
+// for(month in months) {
+//   var liEl = document.createElement('li');
+//   liEl.textContent = months[month];
+//   var nestedUlEl = document.createElement('ul');
+//
+//   for(week in weeks) {
+//     var nestedLiEl = document.createElement('li');
+//     nestedLiEl.textContent = weeks[week];
+//     nestedUlEl.appendChild(nestedLiEl);
 //   }
-//   sectionEl.appendChild(ulEl);
+//
+//   liEl.appendChild(nestedUlEl);
+//   ulEl.appendChild(liEl);
 // }
+//
+// sectionEl.appendChild(ulEl);
