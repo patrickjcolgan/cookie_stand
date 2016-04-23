@@ -1,3 +1,4 @@
+var myList = document.getElementById("my_list")
 var hoursOpen = ["10am", "11am","12am","1pm","2pm","3pm","4pm", "5pm"];
 
 var pikePlace = {
@@ -10,10 +11,10 @@ var pikePlace = {
   randomCustomer: function () {
     return Math.floor(Math.random() * (this.max - this.min) + this.min);
   },
-  genrateHourly: function (){
-    //use for loop to generate a random number and multiply it by the average and stick in hourly sales. add to total sales
+  //use for loop to generate a random number and multiply it by the average and stick in hourly sales. add to total sales
+  generateHourly: function (){
     for (var i = 0; i < hoursOpen.length; i++) {
-      hourlySales[i] = avgSales * randomCustomer(this.min, this.max)
+      this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)))
     }
   }
 }
