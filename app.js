@@ -1,5 +1,6 @@
-var myList = document.getElementById("my_list")
+// var myList = document.getElementById("my_list")
 var hoursOpen = ["10am", "11am","12am","1pm","2pm","3pm","4pm", "5pm"];
+var demand = []; //generate hourly should go in here?
 
 var pikePlace = {
   name: "Pike Place",
@@ -14,28 +15,28 @@ var pikePlace = {
   //use for loop to generate a random number and multiply it by the average and stick in hourly sales. add to total sales
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
-      this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)))
+      this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
       // this.totalSales[i]+= this.hourlySales[i];
       this.totalSales = this.totalSales + this.hourlySales[i];
     }
   }
 }
-// var sectionEl = document.getElementById('myList');
-// var ulEl = document.createElement('ul');
-//
-// for(month in months) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = months[month];
-//   var nestedUlEl = document.createElement('ul');
-//
-//   for(week in weeks) {
-//     var nestedLiEl = document.createElement('li');
-//     nestedLiEl.textContent = weeks[week];
-//     nestedUlEl.appendChild(nestedLiEl);
-//   }
-//
-//   liEl.appendChild(nestedUlEl);
-//   ulEl.appendChild(liEl);
-// }
-//
-// sectionEl.appendChild(ulEl);
+var sectionEl = document.getElementById('store1');
+var ulEl = document.createElement('ul');
+
+for(hour in hoursOpen) {
+  var liEl = document.createElement('li');
+  liEl.textContent = hoursOpen[hour];
+  var nestedUlEl = document.createElement('ul');
+
+  for(value in demand) {
+    var nestedLiEl = document.createElement('li');
+    nestedLiEl.textContent = demand[value];
+    nestedUlEl.appendChild(nestedLiEl);
+  }
+
+  liEl.appendChild(nestedUlEl);
+  ulEl.appendChild(liEl);
+}
+
+sectionEl.appendChild(ulEl);
