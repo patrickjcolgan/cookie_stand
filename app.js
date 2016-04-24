@@ -27,10 +27,14 @@ var pikePlace = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.totalSales;//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
-      sectionEl.appendChild(ulEl);
+      // sectionEl.appendChild(ulEl);
     }
+    liEl = document.createElement("li");
+    liEl.textContent = "Total: " + this.totalSales;
+    ulEl.appendChild(liEl);
+    sectionEl.appendChild(ulEl);
   }
 }
 pikePlace.render();
