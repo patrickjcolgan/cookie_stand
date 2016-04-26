@@ -14,7 +14,8 @@ var pikePlace = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -27,7 +28,7 @@ var pikePlace = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -37,33 +38,14 @@ var pikePlace = {
     sectionEl.appendChild(ulEl); //NEED HELP UNDERSTANDING THIS
   }
 }
-pikePlace.render();
-
-// var sectionEl = document.getElementById('my_list');
-// var ulEl = document.createElement('ul');
-//
-// for(hour in hoursOpen) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = hoursOpen[hour];
-//   var nestedUlEl = document.createElement('ul');
-//
-//   for(value in demand) {
-//     var nestedLiEl = document.createElement('li');
-//     nestedLiEl.textContent = demand[value];
-//     nestedUlEl.appendChild(nestedLiEl);
-//   }
-
-//   liEl.appendChild(nestedUlEl);
-//   ulEl.appendChild(liEl);
-// }
-// sectionEl.appendChild(ulEl);
+// pikePlace.render();
 
 //SeaTac
 var seaTac = {
   name: "SeaTac",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 6,
+  max: 24,
+  avgSales: 1.2,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -73,7 +55,8 @@ var seaTac = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -86,7 +69,7 @@ var seaTac = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -96,14 +79,14 @@ var seaTac = {
     sectionEl.appendChild(ulEl);
   }
 }
-seaTac.render();
+// seaTac.render();
 
 //Southcenter
 var southCenter = {
   name: "South Center",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 11,
+  max: 38,
+  avgSales: 1.9,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -113,7 +96,8 @@ var southCenter = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -126,7 +110,7 @@ var southCenter = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -136,14 +120,14 @@ var southCenter = {
     sectionEl.appendChild(ulEl);
   }
 }
-southCenter.render();
+// southCenter.render();
 
 //Bellevue Square
 var bellevueSquare = {
   name: "Bellevue Square",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 20,
+  max: 48,
+  avgSales: 3.3,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -153,7 +137,8 @@ var bellevueSquare = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -166,7 +151,7 @@ var bellevueSquare = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -176,14 +161,14 @@ var bellevueSquare = {
     sectionEl.appendChild(ulEl);
   }
 }
-bellevueSquare.render();
+// bellevueSquare.render();
 
 //Alki
 var alki = {
   name: "Alki",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 3,
+  max: 24,
+  avgSales: 2.6,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -193,7 +178,8 @@ var alki = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -206,7 +192,7 @@ var alki = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -216,4 +202,16 @@ var alki = {
     sectionEl.appendChild(ulEl);
   }
 }
-alki.render();
+// alki.render();
+
+//Stores are in an array before calling Render Function instead of writing storeName.render(); for each store
+var stores = [
+  pikePlace,
+  seaTac,
+  southCenter,
+  bellevueSquare,
+  alki
+];
+for(var k = 0; k < stores.length; k++){
+  stores[k].render();
+}
