@@ -12,3 +12,7 @@ Instead of this.hourlySales[hour], I had these two incorrect attempts: ..
 
 ###Functions within Functions
 randomCustomer() is within generateHourly(), which is inside render: function()
+
+#Style-Guide
++Header, body, and footer style guide
++Future considerations: font size in body; font color in footer
