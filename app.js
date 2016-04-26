@@ -14,7 +14,8 @@ var pikePlace = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -54,7 +55,8 @@ var seaTac = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -94,7 +96,8 @@ var southCenter = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -134,7 +137,8 @@ var bellevueSquare = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -174,7 +178,8 @@ var alki = {
   generateHourly: function () {
     for (var i = 0; i < hoursOpen.length; i++) {
       this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.min, this.max)));
-      this.totalSales = this.totalSales + this.hourlySales[i];
+      // this.totalSales = this.totalSales + this.hourlySales[i];
+      this.totalSales+= this.hourlySales[i];
     }
   },
   //"for each obj, call its own render method, create it dynamically and append back to page"
@@ -198,6 +203,7 @@ var alki = {
   }
 }
 // alki.render();
+
 //Stores are in an array before calling Render Function instead of writing storeName.render(); for each store
 var stores = [
   pikePlace,
