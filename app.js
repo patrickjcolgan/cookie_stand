@@ -27,7 +27,7 @@ var pikePlace = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -39,31 +39,12 @@ var pikePlace = {
 }
 // pikePlace.render();
 
-// var sectionEl = document.getElementById('my_list');
-// var ulEl = document.createElement('ul');
-//
-// for(hour in hoursOpen) {
-//   var liEl = document.createElement('li');
-//   liEl.textContent = hoursOpen[hour];
-//   var nestedUlEl = document.createElement('ul');
-//
-//   for(value in demand) {
-//     var nestedLiEl = document.createElement('li');
-//     nestedLiEl.textContent = demand[value];
-//     nestedUlEl.appendChild(nestedLiEl);
-//   }
-
-//   liEl.appendChild(nestedUlEl);
-//   ulEl.appendChild(liEl);
-// }
-// sectionEl.appendChild(ulEl);
-
 //SeaTac
 var seaTac = {
   name: "SeaTac",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 6,
+  max: 24,
+  avgSales: 1.2,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -86,7 +67,7 @@ var seaTac = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -101,9 +82,9 @@ var seaTac = {
 //Southcenter
 var southCenter = {
   name: "South Center",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 11,
+  max: 38,
+  avgSales: 1.9,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -126,7 +107,7 @@ var southCenter = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -141,9 +122,9 @@ var southCenter = {
 //Bellevue Square
 var bellevueSquare = {
   name: "Bellevue Square",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 20,
+  max: 48,
+  avgSales: 3.3,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -166,7 +147,7 @@ var bellevueSquare = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -181,9 +162,9 @@ var bellevueSquare = {
 //Alki
 var alki = {
   name: "Alki",
-  min: 17,
-  max: 88,
-  avgSales: 5.2,
+  min: 3,
+  max: 24,
+  avgSales: 2.6,
   hourlySales: [],
   totalSales: 0,
   randomCustomer: function () {
@@ -206,7 +187,7 @@ var alki = {
     //creates li for each hourOpen
     for (hour in hoursOpen) {
       var liEl = document.createElement("li");
-      liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];//each hour + totalSales
+      liEl.textContent = hoursOpen[hour] + " " + this.hourlySales[hour];//each hour + totalSales
       ulEl.appendChild(liEl);
       // sectionEl.appendChild(ulEl);
     }
@@ -217,7 +198,7 @@ var alki = {
   }
 }
 // alki.render();
-
+//Stores are in an array before calling Render Function instead of writing storeName.render(); for each store
 var stores = [
   pikePlace,
   seaTac,
