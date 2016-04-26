@@ -1,10 +1,14 @@
 # cookie_stand
-201 Class Project - OOP Javascript
+##201 Class Project - OOP Javascript - Class 7
 
-Something in my for (hour in hoursOpen) is generating the same hourly sales for each hour.
-.the problem was here:
+##Author: Patrick Colgan
+
+Something in my for (hour in hoursOpen) was generating the same hourly sales for each hour.
+The problem was here:
 liEl.textContent = hoursOpen[hour] + this.hourlySales[hour];
-.instead of this.hourlySales[hour],
-I had these two incorrect attempts:
-..this.totalSales[hour]
-..this.hourlySales
+Instead of this.hourlySales[hour], I had these two incorrect attempts: ..
++ this.totalSales[hour]
++ this.hourlySales
+
+###Functions within Functions
+randomCustomer() is within generateHourly(), which is inside render: function()
