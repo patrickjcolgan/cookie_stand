@@ -37,7 +37,7 @@ var pikePlace = {
     sectionEl.appendChild(ulEl); //NEED HELP UNDERSTANDING THIS
   }
 }
-pikePlace.render();
+// pikePlace.render();
 
 // var sectionEl = document.getElementById('my_list');
 // var ulEl = document.createElement('ul');
@@ -96,7 +96,7 @@ var seaTac = {
     sectionEl.appendChild(ulEl);
   }
 }
-seaTac.render();
+// seaTac.render();
 
 //Southcenter
 var southCenter = {
@@ -136,7 +136,7 @@ var southCenter = {
     sectionEl.appendChild(ulEl);
   }
 }
-southCenter.render();
+// southCenter.render();
 
 //Bellevue Square
 var bellevueSquare = {
@@ -176,7 +176,7 @@ var bellevueSquare = {
     sectionEl.appendChild(ulEl);
   }
 }
-bellevueSquare.render();
+// bellevueSquare.render();
 
 //Alki
 var alki = {
@@ -216,4 +216,15 @@ var alki = {
     sectionEl.appendChild(ulEl);
   }
 }
-alki.render();
+// alki.render();
+
+var stores = [
+  pikePlace,
+  seaTac,
+  southCenter,
+  bellevueSquare,
+  alki
+];
+for(var k = 0; k < stores.length; k++){
+  stores[k].render();
+}
