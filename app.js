@@ -1,23 +1,29 @@
 var hoursOpen = ['10am', '11am','12am','1pm','2pm','3pm','4pm', '5pm'];
-var cookieStores = [];
-var pikePlace = cookieStores.push(new Store('Pike Place', 17, 88, 5.2));
-var seaTac = cookieStores.push(new Store('SeaTac', 6, 24, 1.2));
-var southCenter = cookieStores.push(new Store('South Center', 11, 38, 1.9));
-var bellevueSquare = cookieStores.push(new Store('Bellevue Square', 20, 48, 3.3));
-var alki = cookieStore.push(new Store('Alki', 3, 24, 2.6));
+// var cookieStores = [];
+// var pikePlace = cookieStores.push(new Store('Pike Place', 17, 88, 5.2));
+// var seaTac = cookieStores.push(new Store('SeaTac', 6, 24, 1.2));
+// var southCenter = cookieStores.push(new Store('South Center', 11, 38, 1.9));
+// var bellevueSquare = cookieStores.push(new Store('Bellevue Square', 20, 48, 3.3));
+// var alki = cookieStores.push(new Store('Alki', 3, 24, 2.6));
+
+var pikePlace = new Store('Pike Place', 17, 88, 5.2);
+var seaTac = new Store('SeaTac', 6, 24, 1.2);
+var southCenter = new Store('South Center', 11, 38, 1.9);
+var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
+var alki = new Store('Alki', 3, 24, 2.6);
 
 function Store(name, min, max, avgSales) {
   this.name = name;
-  this.minNumCust = minNumCust;
-  this.maxNumCust = maxNumCust;
+  this.minNumCust = min;
+  this.maxNumCust = max;
   this.avgSales = avgSales;
   this.hourlySales = [];
   this.totalSales = 0;
 };
-Store.prototype.randomCustomer = function (maxNumCust, minNumCust) {
-  return Math.random() * (maxNumCust - minNumCust) + minNumCust;
+Store.prototype.randomCustomer = function () {
+  return Math.random() * (this.maxNumCust - this.minNumCust) + this.minNumCust;
 };
-Store.prototype.generateHourly = function () {
+Store.prototype.generateHourly = function() {
   for (var i = 0; i < hoursOpen.length; i++) {
     this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.minNumCust, this.maxNumCust)));
     this.totalSales += this.hourlySales[i];
@@ -25,7 +31,7 @@ Store.prototype.generateHourly = function () {
 };
 Store.prototype.render = function(){
   this.generateHourly();
-  var secctionEl = document.getElementById('stores');
+  var sectionEl = document.getElementById('stores');
   sectionEl.textContent = this.name;
   var ulEl = document.createElement('ul');
 
@@ -39,7 +45,12 @@ Store.prototype.render = function(){
   ulEl.appendChild(liEl);
   sectionEl.appendChild(ulEl);
 };
-render();
+// coookieStores.render([i]);
+pikePlace.render();
+seaTac.render();
+southCenter.render();
+bellevueSquare.render();
+alki.render();
 
 // var pikePlace = {
 //   name: "Pike Place",
