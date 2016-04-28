@@ -1,0 +1,19 @@
+#header {
+  font-family: 'Metrophobic', sans-serif;
+  background-color: #455A64;
+  color: #fff;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.main {
+  font-family: 'Metrophobic', sans-serif;
+  color: #212121;
+}
+
+#footer {
+  font-family: 'Metrophobic', sans-serif;
+  background-color: #B6B6B6;
+  color: #FFFFFF; 
+}
