@@ -32,7 +32,9 @@ Store.prototype.generateHourly = function() {
 Store.prototype.render = function(){
   this.generateHourly();
   var sectionEl = document.getElementById('stores');
-  sectionEl.textContent = this.name;
+  var newStore = document.createElement('section');//new section?
+  // sectionEl.textContent = this.name;
+  sectionEl.appendChild(newStore);
   var ulEl = document.createElement('ul');
 
   for (hour in hoursOpen) {
@@ -46,6 +48,10 @@ Store.prototype.render = function(){
   sectionEl.appendChild(ulEl);
 };
 // coookieStores.render([i]);
+
+// for(var k = 0; k < hoursOpen.length; k++){
+//   Store.render([k]);
+// }
 pikePlace.render();
 seaTac.render();
 southCenter.render();
