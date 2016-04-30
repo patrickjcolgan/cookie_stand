@@ -19,26 +19,42 @@ Store.prototype.generateHourly = function() {
     this.totalSales += this.hourlySales[i];
   }
 };
-Store.prototype.render = function(){
+Store.prototype.render = function() {
   this.generateHourly();
-  var sectionEl = document.getElementById('stores');
-  var newStore = document.createElement('section');//new section for each store?
-  sectionEl.appendChild(newStore);//appends var newStore to new sectio
-  var ulEl = document.createElement('ul');//creates ul
+  var tableEl = document.getElementById('stores');
+  var tableData = document.createElement('td');
+  tableEl.appendChild(tableData);
+  // tableRow.appendChild(tableData);
 
-  //creates li for each hoursOpen, then populates with hourlySales
   for (hour in hoursOpen) {
-    var liEl = document.createElement('li');
-    liEl.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
-    ulEl.appendChild(liEl);
+    var tableRow = document.createElement('tr');
+    tableRow.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
+    tableData.appendChild(tableRow);
   }
-  //Creates li for Totals row
-  var totaLiEl = document.createElement('li');
-  totaLiEl.textContent = 'Total: ' + this.totalSales;
-  ulEl.appendChild(totaLiEl);
-  newStore.textContent = this.name;
-  newStore.appendChild(ulEl);
+  var totalsRow = document.createElement('tr');
+  totalsRow.textContent = 'Total ' + this.totalSales;
+  tableRow.appendChild(totalsRow);
 };
+// Store.prototype.render = function(){
+//   this.generateHourly();
+//   var sectionEl = document.getElementById('stores');
+//   var newStore = document.createElement('section');//new section for each store?
+//   sectionEl.appendChild(newStore);//appends var newStore to new sectio
+//   var ulEl = document.createElement('ul');//creates ul
+//
+//   //creates li for each hoursOpen, then populates with hourlySales
+//   for (hour in hoursOpen) {
+//     var liEl = document.createElement('li');
+//     liEl.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
+//     ulEl.appendChild(liEl);
+//   }
+//   //Creates li for Totals row
+//   var totaLiEl = document.createElement('li');
+//   totaLiEl.textContent = 'Total: ' + this.totalSales;
+//   ulEl.appendChild(totaLiEl);
+//   newStore.textContent = this.name;
+//   newStore.appendChild(ulEl);
+// };
 var pikePlace = new Store('Pike Place', 17, 88, 5.2);
 var seaTac = new Store('SeaTac', 6, 24, 1.2);
 var southCenter = new Store('South Center', 11, 38, 1.9);
