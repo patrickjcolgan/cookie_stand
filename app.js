@@ -19,21 +19,29 @@ Store.prototype.generateHourly = function() {
     this.totalSales += this.hourlySales[i];
   }
 };
-Store.prototype.render = function() {
-  this.generateHourly();
+//render is a property of the store constructor object, NOT each instance
+//1.run generate hourly for each store
+//2.get the table by id (done)
+//3.
+Store.render = function() {
   var tableEl = document.getElementById('stores');
-  var tableData = document.createElement('td');
-  tableEl.appendChild(tableData);
-  // tableRow.appendChild(tableData);
+  // var row = document.createElement('tr');
 
-  for (hour in hoursOpen) {
+  for (obj in cookieStores) {
+    cookieStores[obj].generateHourly();//gets object you're iterating over
     var tableRow = document.createElement('tr');
-    tableRow.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
-    tableData.appendChild(tableRow);
+
+    for (hour in hoursOpen) {
+      var tableData = document.createElement('td');
+      tableData.textContent = hoursOpen[hour] + ' ' + cookieStores[obj].hourlySales[hour];
+      tableRow.appendChild(tableData);
+    }
+    var totalsData = document.createElement('td');
+    totalsData.textContent = 'Total ' + cookieStores[obj].totalSales;
+    tableRow.appendChild(totalsData);
+    tableEl.appendChild(tableRow);//appending to original tr
   }
-  var totalsRow = document.createElement('tr');
-  totalsRow.textContent = 'Total ' + this.totalSales;
-  tableRow.appendChild(totalsRow);
+
 };
 // Store.prototype.render = function(){
 //   this.generateHourly();
@@ -61,6 +69,6 @@ var southCenter = new Store('South Center', 11, 38, 1.9);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
 
-for (store in cookieStores){
-  cookieStores[store].render();
-}
+// for (store in cookieStores){
+//   cookieStores[store].render();
+// }
