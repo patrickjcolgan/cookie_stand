@@ -42,6 +42,7 @@ Store.prototype.render = function(){
     liEl.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
     ulEl.appendChild(liEl);
   }
+  //Creates li for Totals row
   var totaLiEl = document.createElement('li');
   totaLiEl.textContent = 'Total: ' + this.totalSales;
   ulEl.appendChild(totaLiEl);
@@ -54,13 +55,6 @@ seaTac.render();
 southCenter.render();
 bellevueSquare.render();
 alki.render();
-
-//Previous way of adding Total li
-// var totaLiEl = document.createElement('li');
-// liEl.textContent = 'Total: ' + this.totalSales;
-// ulEl.appendChild(liEl);
-// sectionEl.appendChild(ulEl);
-
 //Stores are in an array before calling Render Function instead of writing storeName.render(); for each store
 // var stores = [
 //   pikePlace,
