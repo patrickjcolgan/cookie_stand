@@ -26,6 +26,15 @@ Store.prototype.generateHourly = function() {
 Store.render = function() {
   var tableEl = document.getElementById('stores');
   // var row = document.createElement('tr');
+  // for (obj in hoursOpen) {
+  //   var tableHeader = document.createElement('th');
+  //   tableHeader.textContent = hoursOpen[obj];
+  // }
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var tableHeader = document.createElement('th');
+    tableHeader.textContent = hoursOpen[i];
+    tableEl.appendChild(tableHeader);
+  }
 
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
@@ -68,7 +77,7 @@ var seaTac = new Store('SeaTac', 6, 24, 1.2);
 var southCenter = new Store('South Center', 11, 38, 1.9);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
-
+Store.render();
 // for (store in cookieStores){
 //   cookieStores[store].render();
 // }
