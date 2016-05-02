@@ -31,14 +31,20 @@ Store.render = function() {
     tableHeader.textContent = hoursOpen[i];
     tableEl.appendChild(tableHeader);
     //create a th   !!!!!!!!!!!!!!!!!!!!!
-    //add "total" content !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //add "total" header !!!!!
   }
+  //Creates "Total" Header in last column
+  var totalHeader = document.createElement('th');
+  totalHeader.textContent = 'Total';
+  tableEl.appendChild(totalHeader);
+
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
     var tableRow = document.createElement('tr');
     var nameRow = document.createElement('td');//Generates Store names
     nameRow.textContent = cookieStores[obj].name;
     tableRow.appendChild(nameRow);
+    //EMPTY CELL???????
 
     //HOURLY SALES DATA
     for (hour in hoursOpen) {
@@ -48,7 +54,7 @@ Store.render = function() {
     }
 
     var totalsData = document.createElement('td');
-    totalsData.textContent = 'Total ' + cookieStores[obj].totalSales;
+    totalsData.textContent = cookieStores[obj].totalSales;
     tableRow.appendChild(totalsData);
     tableEl.appendChild(tableRow);//appending to original tr
   }
