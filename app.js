@@ -25,26 +25,28 @@ Store.prototype.generateHourly = function() {
 //3.
 Store.render = function() {
   var tableEl = document.getElementById('stores');
-  // var row = document.createElement('tr');
-
+//Hourly Column Headers
   for (var i = 0; i < hoursOpen.length; i++) {
     var tableHeader = document.createElement('th');
     tableHeader.textContent = hoursOpen[i];
     tableEl.appendChild(tableHeader);
+    //create a th   !!!!!!!!!!!!!!!!!!!!!
+    //add "total" content !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
-  // for (var j = 0; i < cookieStores.length; i++) {
-  //
-  // }
-
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
     var tableRow = document.createElement('tr');
+    var nameRow = document.createElement('td');//Generates Store names
+    nameRow.textContent = cookieStores[obj].name;
+    tableRow.appendChild(nameRow);
 
+    //HOURLY SALES DATA
     for (hour in hoursOpen) {
       var tableData = document.createElement('td');
       tableData.textContent = cookieStores[obj].hourlySales[hour];
       tableRow.appendChild(tableData);
     }
+
     var totalsData = document.createElement('td');
     totalsData.textContent = 'Total ' + cookieStores[obj].totalSales;
     tableRow.appendChild(totalsData);
