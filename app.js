@@ -22,16 +22,16 @@ Store.prototype.generateHourly = function() {
 //render is a property of the store constructor object, NOT each instance
 //1.run generate hourly for each store
 //2.get the table by id (done)
-//3.
 Store.render = function() {
   var tableEl = document.getElementById('stores');
-//Hourly Column Headers
+  //emptyCell top-left of table
+  var emptyCell = document.createElement('th');
+  tableEl.appendChild(emptyCell);
+  //Hourly Column Headers
   for (var i = 0; i < hoursOpen.length; i++) {
     var tableHeader = document.createElement('th');
     tableHeader.textContent = hoursOpen[i];
     tableEl.appendChild(tableHeader);
-    //create a th   !!!!!!!!!!!!!!!!!!!!!
-    //add "total" header !!!!!
   }
   //Creates "Total" Header in last column
   var totalHeader = document.createElement('th');
@@ -41,10 +41,9 @@ Store.render = function() {
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
     var tableRow = document.createElement('tr');
-    var nameRow = document.createElement('td');//Generates Store names
-    nameRow.textContent = cookieStores[obj].name;
+    var nameRow = document.createElement('td');//td for Store names
+    nameRow.textContent = cookieStores[obj].name;//gets Store names
     tableRow.appendChild(nameRow);
-    //EMPTY CELL???????
 
     //HOURLY SALES DATA
     for (hour in hoursOpen) {
@@ -52,40 +51,18 @@ Store.render = function() {
       tableData.textContent = cookieStores[obj].hourlySales[hour];
       tableRow.appendChild(tableData);
     }
-
+    //Total Sales Data
     var totalsData = document.createElement('td');
     totalsData.textContent = cookieStores[obj].totalSales;
     tableRow.appendChild(totalsData);
     tableEl.appendChild(tableRow);//appending to original tr
   }
-
 };
-// Store.prototype.render = function(){
-//   this.generateHourly();
-//   var sectionEl = document.getElementById('stores');
-//   var newStore = document.createElement('section');//new section for each store?
-//   sectionEl.appendChild(newStore);//appends var newStore to new sectio
-//   var ulEl = document.createElement('ul');//creates ul
-//
-//   //creates li for each hoursOpen, then populates with hourlySales
-//   for (hour in hoursOpen) {
-//     var liEl = document.createElement('li');
-//     liEl.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
-//     ulEl.appendChild(liEl);
-//   }
-//   //Creates li for Totals row
-//   var totaLiEl = document.createElement('li');
-//   totaLiEl.textContent = 'Total: ' + this.totalSales;
-//   ulEl.appendChild(totaLiEl);
-//   newStore.textContent = this.name;
-//   newStore.appendChild(ulEl);
-// };
+
 var pikePlace = new Store('Pike Place', 17, 88, 5.2);
 var seaTac = new Store('SeaTac', 6, 24, 1.2);
 var southCenter = new Store('South Center', 11, 38, 1.9);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
+
 Store.render();
-// for (store in cookieStores){
-//   cookieStores[store].render();
-// }
