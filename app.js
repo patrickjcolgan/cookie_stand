@@ -66,3 +66,10 @@ var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
 
 Store.render();
+
+//New Store data via input forms
+var formEl = document.getElementById('form');
+formEl.addEventListener('submit', function(event){
+  event.preventDefault();
+  
+});
