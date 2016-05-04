@@ -1,3 +1,6 @@
+body {
+  font-family: 'Metrophobic',serif;
+}
 #header {
   font-family: 'Metrophobic', sans-serif;
   background-color: #455A64;
@@ -43,7 +46,44 @@
 .navlinks a:hover{
   color: #b6b6b6;
 }
-.main {
+/************** Three Ingredients ********************/
+#wrapper {
+  width: 900px;
+  clear: both;
+  margin-top: 30px;
+  margin-left: 300px;
+  text-align: center;
+
+}
+#first {
+  width: 300px;
+  float: left;
+}
+#second {
+  width: 300px;
+  float:left;
+}
+#third {
+  width: 300px;
+  float: left;
+}
+.ingredients {
+  display: block;
+}
+
+.img_fishies {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+/*********       ARTICLES  *********/
+.article {
+  display: block;
+}
+
+/*.main {
   font-family: 'Metrophobic', sans-serif;
   color: #212121;
 }
@@ -70,7 +110,7 @@ a:hover {
   border-top: 1px solid #999;
   border-bottom: 2px solid #212121;
   empty-cells: hide;
-}
+}*/
 /*#store tr {
   border-bottom: 1px solid #b6b6b6;
 }*/
