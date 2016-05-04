@@ -6,6 +6,43 @@
   font-weight: normal;
   letter-spacing: 1px;
 }
+#title {
+  margin-left: auto; /*centers box even tho centering content too*/
+  margin-right: auto;
+  text-align: center;
+}
+/*Navigation links*/
+#nav ul {
+  list-style-type: none;
+  font-family: 'Metrophobic', sans-serif;
+  color: #fff;
+  /*margin: 0 auto;*/
+  text-align: center;
+}
+/*Targets Nav li */
+#nav * li {
+  display: inline;
+  font-family: 'Metrophobic', sans-serif;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navlinks a:link {
+  /*display: inline;*/
+  /*margin: 0 auto;*/
+  color: #fff;
+  text-decoration: none;
+  background-color: gray;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  border-radius: 100%;
+}
+.navlinks a:visited{
+  color: #fff;
+}
+.navlinks a:hover{
+  color: #b6b6b6;
+}
 .main {
   font-family: 'Metrophobic', sans-serif;
   color: #212121;

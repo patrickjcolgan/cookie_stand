@@ -69,7 +69,37 @@ Store.render();
 
 //New Store data via input forms
 var formEl = document.getElementById('form');
+
 formEl.addEventListener('submit', function(event){
   event.preventDefault();
-  
+  // console.log(event.target.newstorelocation.value);
+  var newStoreName = document.createElement('tr');
+  var newMinCust = document.createElement('td');
+  var newMaxCust = document.createElement('td');
+  var newAvgCustSale = document.createElement('td');
+  var insertNewStore = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+
+  newStoreName.textContent = event.target.newstorelocation.value;
+  newMinCust.textContent = parseInt(event.target.min.value);
+  newMaxCust.textContent = parseInt(event.target.max.value);
+  newAvgCustSale.textContent = parseFloat(event.target.avg.value);
+
+  newStoreName.appendChild(newMinCust);
+  newStoreName.appendChild(newMaxCust);
+  newStoreName.appendChild(newAvgCustSale);
+  Store.tableEl.appendChild(insertNewStore);//appends all data on existing table
 });
+// var formEl = document.getElementById('form');
+//
+// formEl.addEventListener('submit', function(event){
+//   event.preventDefault();
+//   console.log(event.target.min.value);
+//   var newStoreName = event.target.newstorelocation.value;
+//   var newMinCust = parseInt(event.target.min.value);
+//   var newMaxCust = parseInt(event.target.max.value);
+//   var newAvgCustSale = parseFloat(event.target.avg.value);
+//   var InsertNewStore = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+//   tableEl.appendChild(InsertNewStore);
+//
+//   Store.render();
+// });
