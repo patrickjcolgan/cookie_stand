@@ -19,24 +19,31 @@ Store.prototype.generateHourly = function() {
     this.totalSales += this.hourlySales[i];
   }
 };
+var pikePlace = new Store('Pike Place', 17, 88, 5.2);
+var seaTac = new Store('SeaTac', 6, 24, 1.2);
+var southCenter = new Store('South Center', 11, 38, 1.9);
+var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
+var alki = new Store('Alki', 3, 24, 2.6);
 //render is a property of the store constructor object, NOT each instance
 //1.run generate hourly for each store
 //2.get the table by id (done)
-Store.render = function() {
-  var tableEl = document.getElementById('stores');
+var tableEl = document.getElementById('stores');
+(Store.render = function() {
   //emptyCell top-left of table
+  var hoursRow = document.createElement('tr');
   var emptyCell = document.createElement('th');
-  tableEl.appendChild(emptyCell);
+  hoursRow.appendChild(emptyCell);
   //Hourly Column Headers
   for (var i = 0; i < hoursOpen.length; i++) {
     var tableHeader = document.createElement('th');
     tableHeader.textContent = hoursOpen[i];
-    tableEl.appendChild(tableHeader);
+    hoursRow.appendChild(tableHeader);
   }
   //Creates "Total" Header in last column
   var totalHeader = document.createElement('th');
   totalHeader.textContent = 'Total';
-  tableEl.appendChild(totalHeader);
+  hoursRow.appendChild(totalHeader);
+  tableEl.appendChild(hoursRow);
 
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
@@ -57,49 +64,35 @@ Store.render = function() {
     tableRow.appendChild(totalsData);
     tableEl.appendChild(tableRow);//appending to original tr
   }
+})();//bc only calling Store.render once on load, call it once on load (no longer avail in global scope bc we dont need it)
+// Store.render();
+Store.renderNew = function(obj) {
+  var newRow = document.createElement('tr');
+  var nameTd = document.createElement('td');
+  nameTd.textContent = obj.name;
+  newRow.appendChild(nameTd);
+
+  for (hour in hoursOpen) {
+    var salesTd = document.createElement('td');
+    salesTd.textContent = obj.hourlySales[hour];
+    newRow.appendChild(salesTd);
+  }
+  var newTotalTd = document.createElement('td');
+  newTotalTd.textContent = obj.totalSales;
+  newRow.appendChild(newTotalTd);
+  tableEl.appendChild(newRow);
 };
-
-var pikePlace = new Store('Pike Place', 17, 88, 5.2);
-var seaTac = new Store('SeaTac', 6, 24, 1.2);
-var southCenter = new Store('South Center', 11, 38, 1.9);
-var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
-var alki = new Store('Alki', 3, 24, 2.6);
-
-Store.render();
-
-//New Store data via input forms
 var formEl = document.getElementById('form');
 
 formEl.addEventListener('submit', function(event){
   event.preventDefault();
-  // console.log(event.target.newstorelocation.value);
-  var newStoreName = document.createElement('tr');
-  var newMinCust = document.createElement('td');
-  var newMaxCust = document.createElement('td');
-  var newAvgCustSale = document.createElement('td');
-  var insertNewStore = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
-
-  newStoreName.textContent = event.target.newstorelocation.value;
-  newMinCust.textContent = parseInt(event.target.min.value);
-  newMaxCust.textContent = parseInt(event.target.max.value);
-  newAvgCustSale.textContent = parseFloat(event.target.avg.value);
-
-  newStoreName.appendChild(newMinCust);
-  newStoreName.appendChild(newMaxCust);
-  newStoreName.appendChild(newAvgCustSale);
-  Store.tableEl.appendChild(insertNewStore);//appends all data on existing table
+  var newStoreName = event.target.newstorelocation.value;
+  var newMinCust = parseInt(event.target.min.value);
+  var newMaxCust = parseInt(event.target.max.value);
+  var newAvgCustSale = parseFloat(event.target.avg.value);
+  // console.log(newStoreName);
+  var newShop = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+  newShop.generateHourly();
+  //Take this newShop object and hand into renderNew method
+  Store.renderNew(newShop);
 });
-// var formEl = document.getElementById('form');
-//
-// formEl.addEventListener('submit', function(event){
-//   event.preventDefault();
-//   console.log(event.target.min.value);
-//   var newStoreName = event.target.newstorelocation.value;
-//   var newMinCust = parseInt(event.target.min.value);
-//   var newMaxCust = parseInt(event.target.max.value);
-//   var newAvgCustSale = parseFloat(event.target.avg.value);
-//   var InsertNewStore = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
-//   tableEl.appendChild(InsertNewStore);
-//
-//   Store.render();
-// });
