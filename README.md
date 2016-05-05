@@ -1,5 +1,5 @@
 # cookie_stand
-##201 Class Project - OOP Javascript - Class 7
+##201 Class Project - OOP Javascript - Classes 7 - 12
 
 ##Author: Patrick Colgan
 
@@ -15,4 +15,15 @@ randomCustomer() is within generateHourly(), which is inside render: function()
 
 #Style-Guide
 +Header, body, and footer style guide
-+Future considerations: font size in body; font color in footer
++background-color, font-color, font, and links included
+
+### N9 and N10
+For N9, implemented constructor function, so I didn't have to write duplicate code for each store.
+
+cookieStores.push(this);
+This code was added to constructor function so new stores could be added
+
+For N10, replaced ul and li scripts to put data in a table.
+
+_No longer using .prototype for render.
+Instead, render is a property of the store constructor object, NOT each instance. This means I could no longer use "this" within render._

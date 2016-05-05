@@ -1,3 +1,7 @@
+body {
+  font-family: 'Metrophobic',serif;
+  margin: 5px 15px;
+}
 #header {
   font-family: 'Metrophobic', sans-serif;
   background-color: #455A64;
@@ -6,7 +10,107 @@
   font-weight: normal;
   letter-spacing: 1px;
 }
-.main {
+#title {
+  margin-left: auto; /*centers box even tho centering content too*/
+  margin-right: auto;
+  text-align: center;
+}
+/*Navigation links*/
+#nav ul {
+  list-style-type: none;
+  font-family: 'Metrophobic', sans-serif;
+  color: #fff;
+  /*margin: 0 auto;*/
+  text-align: center;
+}
+/*Targets Nav li */
+#nav * li {
+  display: inline;
+  font-family: 'Metrophobic', sans-serif;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navlinks a:link {
+  /*display: inline;*/
+  /*margin: 0 auto;*/
+  color: #fff;
+  text-decoration: none;
+  background-color: gray;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  border-radius: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.navlinks a:visited{
+  color: #fff;
+}
+.navlinks a:hover{
+  color: #b6b6b6;
+}
+/************** About Us *************************************/
+.about_us {
+  margin: 5px 15px;
+}
+/************** Three Ingredients/Images ********************/
+#wrapper {
+  width: 900px;
+  clear: both;
+  margin-top: 30px;
+  margin-left: 300px;
+  text-align: center;
+}
+#first {
+  width: 300px;
+  float: left;
+}
+#second {
+  width: 300px;
+  float:left;
+}
+#third {
+  width: 300px;
+  float: left;
+}
+.ingredients {
+  display: block;
+}
+.img_fishies {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+/*********       Franchise Opportunities  *********/
+.article {
+  clear: both;  /* keeps from floating after previous div */
+  background-color: hsla(15, 45%, 5%, 0.2);
+  color: #black;
+}
+/*********       Health Benefits: opaque background img  *********/
+/*********  help received here:https://scotch.io/tutorials/how-to-change-a-css-background-images-opacity  *********/
+.health_benefits {
+    position: relative;
+    overflow: hidden;
+}
+.health_benefits p {
+  padding: 15px;
+  position: relative;
+  z-index: 2;
+}
+.health_benefits img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.6;
+}
+
+
+/*.main {
   font-family: 'Metrophobic', sans-serif;
   color: #212121;
 }
@@ -29,3 +133,11 @@ a:visited {
 a:hover {
   color: #b6b6b6;
 }
+#stores > th {
+  border-top: 1px solid #999;
+  border-bottom: 2px solid #212121;
+  empty-cells: hide;
+}*/
+/*#store tr {
+  border-bottom: 1px solid #b6b6b6;
+}*/

@@ -1,16 +1,5 @@
 var hoursOpen = ['10am', '11am','12am','1pm','2pm','3pm','4pm', '5pm'];
-// var cookieStores = [];
-// var pikePlace = cookieStores.push(new Store('Pike Place', 17, 88, 5.2));
-// var seaTac = cookieStores.push(new Store('SeaTac', 6, 24, 1.2));
-// var southCenter = cookieStores.push(new Store('South Center', 11, 38, 1.9));
-// var bellevueSquare = cookieStores.push(new Store('Bellevue Square', 20, 48, 3.3));
-// var alki = cookieStores.push(new Store('Alki', 3, 24, 2.6));
-
-var pikePlace = new Store('Pike Place', 17, 88, 5.2);
-var seaTac = new Store('SeaTac', 6, 24, 1.2);
-var southCenter = new Store('South Center', 11, 38, 1.9);
-var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
-var alki = new Store('Alki', 3, 24, 2.6);
+var cookieStores = [];
 
 function Store(name, min, max, avgSales) {
   this.name = name;
@@ -19,6 +8,7 @@ function Store(name, min, max, avgSales) {
   this.avgSales = avgSales;
   this.hourlySales = [];
   this.totalSales = 0;
+  cookieStores.push(this); //pushes new Store instances into cookieStores array
 };
 Store.prototype.randomCustomer = function () {
   return Math.random() * (this.maxNumCust - this.minNumCust) + this.minNumCust;
@@ -29,40 +19,80 @@ Store.prototype.generateHourly = function() {
     this.totalSales += this.hourlySales[i];
   }
 };
-Store.prototype.render = function(){
-  this.generateHourly();
-  var sectionEl = document.getElementById('stores');
-  var newStore = document.createElement('section');//new section for each store?
-  sectionEl.appendChild(newStore);//appends var newStore to new sectio
-  var ulEl = document.createElement('ul');//creates ul
-
-  //creates li for each hoursOpen, then populates with hourlySales
-  for (hour in hoursOpen) {
-    var liEl = document.createElement('li');
-    liEl.textContent = hoursOpen[hour] + ' ' + this.hourlySales[hour];
-    ulEl.appendChild(liEl);
+var pikePlace = new Store('Pike Place', 17, 88, 5.2);
+var seaTac = new Store('SeaTac', 6, 24, 1.2);
+var southCenter = new Store('South Center', 11, 38, 1.9);
+var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
+var alki = new Store('Alki', 3, 24, 2.6);
+//render is a property of the store constructor object, NOT each instance
+//1.run generate hourly for each store
+//2.get the table by id (done)
+var tableEl = document.getElementById('stores');
+(Store.render = function() {
+  //emptyCell top-left of table
+  var hoursRow = document.createElement('tr');
+  var emptyCell = document.createElement('th');
+  hoursRow.appendChild(emptyCell);
+  //Hourly Column Headers
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var tableHeader = document.createElement('th');
+    tableHeader.textContent = hoursOpen[i];
+    hoursRow.appendChild(tableHeader);
   }
-  //Creates li for Totals row
-  var totaLiEl = document.createElement('li');
-  totaLiEl.textContent = 'Total: ' + this.totalSales;
-  ulEl.appendChild(totaLiEl);
-  newStore.textContent = this.name;
-  newStore.appendChild(ulEl);
+  //Creates "Total" Header in last column
+  var totalHeader = document.createElement('th');
+  totalHeader.textContent = 'Total';
+  hoursRow.appendChild(totalHeader);
+  tableEl.appendChild(hoursRow);
+
+  for (obj in cookieStores) {
+    cookieStores[obj].generateHourly();//gets object you're iterating over
+    var tableRow = document.createElement('tr');
+    var nameRow = document.createElement('td');//td for Store names
+    nameRow.textContent = cookieStores[obj].name;//gets Store names
+    tableRow.appendChild(nameRow);
+
+    //HOURLY SALES DATA
+    for (hour in hoursOpen) {
+      var tableData = document.createElement('td');
+      tableData.textContent = cookieStores[obj].hourlySales[hour];
+      tableRow.appendChild(tableData);
+    }
+    //Total Sales Data
+    var totalsData = document.createElement('td');
+    totalsData.textContent = cookieStores[obj].totalSales;
+    tableRow.appendChild(totalsData);
+    tableEl.appendChild(tableRow);//appending to original tr
+  }
+})();//bc only calling Store.render once on load, call it once on load (no longer avail in global scope bc we dont need it)
+// Store.render();
+Store.renderNew = function(obj) {
+  var newRow = document.createElement('tr');
+  var nameTd = document.createElement('td');
+  nameTd.textContent = obj.name;
+  newRow.appendChild(nameTd);
+
+  for (hour in hoursOpen) {
+    var salesTd = document.createElement('td');
+    salesTd.textContent = obj.hourlySales[hour];
+    newRow.appendChild(salesTd);
+  }
+  var newTotalTd = document.createElement('td');
+  newTotalTd.textContent = obj.totalSales;
+  newRow.appendChild(newTotalTd);
+  tableEl.appendChild(newRow);
 };
-// coookieStores.render([i]);????
-pikePlace.render();
-seaTac.render();
-southCenter.render();
-bellevueSquare.render();
-alki.render();
-//Stores are in an array before calling Render Function instead of writing storeName.render(); for each store
-// var stores = [
-//   pikePlace,
-//   seaTac,
-//   southCenter,
-//   bellevueSquare,
-//   alki
-// ];
-// for(var k = 0; k < stores.length; k++){
-//   stores[k].render();
-// }
+var formEl = document.getElementById('form');
+
+formEl.addEventListener('submit', function(event){
+  event.preventDefault();
+  var newStoreName = event.target.newstorelocation.value;
+  var newMinCust = parseInt(event.target.min.value);
+  var newMaxCust = parseInt(event.target.max.value);
+  var newAvgCustSale = parseFloat(event.target.avg.value);
+  // console.log(newStoreName);
+  var newShop = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+  newShop.generateHourly();
+  //Take this newShop object and hand into renderNew method
+  Store.renderNew(newShop);
+});
