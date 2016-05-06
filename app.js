@@ -8,6 +8,7 @@ function Store(name, min, max, avgSales) {
   this.avgSales = avgSales;
   this.hourlySales = [];
   this.totalSales = 0;
+  this.id = [],
   cookieStores.push(this); //pushes new Store instances into cookieStores array
 };
 Store.prototype.randomCustomer = function () {
@@ -83,6 +84,17 @@ Store.renderNew = function(obj) {
   tableEl.appendChild(newRow);
 };
 var formEl = document.getElementById('form');
+//Update Existing Store's Data
+Store.renderUpdate = function(shop, min, max, average) {
+  var updateStore = document.getElementById('newstorelocation').value;
+  var updateMin = document.getElementById('min').value;
+  var updateMax = document.getElementById('max').value;
+  var updateAvg = document.getElementById('avg').value;
+
+  if (updateStore = shop.name) {
+
+  }
+};
 
 formEl.addEventListener('submit', function(event){
   event.preventDefault();
