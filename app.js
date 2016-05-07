@@ -8,8 +8,9 @@ function Store(name, min, max, avgSales) {
   this.avgSales = avgSales;
   this.hourlySales = [];
   this.totalSales = 0;
-  this.id = [],
+  this.id = name.replace(' ', '').toLowerCase();
   cookieStores.push(this); //pushes new Store instances into cookieStores array
+  this.generateHourly();
 };
 Store.prototype.randomCustomer = function () {
   return Math.random() * (this.maxNumCust - this.minNumCust) + this.minNumCust;
@@ -49,6 +50,7 @@ var tableEl = document.getElementById('stores');
   for (obj in cookieStores) {
     cookieStores[obj].generateHourly();//gets object you're iterating over
     var tableRow = document.createElement('tr');
+    tableRow.id = cookieStores[obj].id;
     var nameRow = document.createElement('td');//td for Store names
     nameRow.textContent = cookieStores[obj].name;//gets Store names
     tableRow.appendChild(nameRow);
@@ -69,6 +71,7 @@ var tableEl = document.getElementById('stores');
 // Store.render();
 Store.renderNew = function(obj) {
   var newRow = document.createElement('tr');
+  newRow.id = obj.id;
   var nameTd = document.createElement('td');
   nameTd.textContent = obj.name;
   newRow.appendChild(nameTd);
@@ -82,29 +85,69 @@ Store.renderNew = function(obj) {
   newTotalTd.textContent = obj.totalSales;
   newRow.appendChild(newTotalTd);
   tableEl.appendChild(newRow);
+
+  // var newShop = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+  // newShop.generateHourly();//move to renderNew
 };
-var formEl = document.getElementById('form');
-//Update Existing Store's Data
-Store.renderUpdate = function(shop, min, max, average) {
-  var updateStore = document.getElementById('newstorelocation').value;
-  var updateMin = document.getElementById('min').value;
-  var updateMax = document.getElementById('max').value;
-  var updateAvg = document.getElementById('avg').value;
+// var formEl = document.getElementById('form');
 
-  if (updateStore = shop.name) {
+//STRETCH GOAL: UPDATE EXISTING STORE'S DATA
+Store.renderUpdate = function(shop, min, max, avg) {
+  var trEl = document.getElementById(shop.id);
+  console.log(trEl);
+  shop.minNumCust = min;
+  shop.maxNumCust = max;
+  shop.avgSales = avg;
+  shop.hourlySales = [];
+  shop.totalSales = 0;
+  // shop.generateHourly();//just calling generateHourly ON the instance / moving this to constructor
 
+  for (var i = 0; i < shop.hourlySales.length; i++) { //why not hoursOpen.length?
+    trEl.childNodes[i + 1].textContent = shop.hourlySales[i];
   }
+  trEl.childNodes[trEl.childNodes.length - 1].textContent = shop.totalSales;
 };
-
-formEl.addEventListener('submit', function(event){
+document.getElementById('form').addEventListener('submit', function(event){
   event.preventDefault();
+  var exists = false;
   var newStoreName = event.target.newstorelocation.value;
   var newMinCust = parseInt(event.target.min.value);
   var newMaxCust = parseInt(event.target.max.value);
   var newAvgCustSale = parseFloat(event.target.avg.value);
-  // console.log(newStoreName);
-  var newShop = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
-  newShop.generateHourly();
-  //Take this newShop object and hand into renderNew method
-  Store.renderNew(newShop);
+
+  for (var i = 0; i < cookieStores.length; i++) {
+    if (cookieStores[i].id === newStoreName.replace(' ','').toLowerCase()) {
+      exists = true;
+      break;
+    }
+  }
+  if (exists === true) {
+    console.log('true');
+    Store.renderUpdate(cookieStores[i], min, max, avg);
+  } else {
+    console.log('false');
+    var newStore = new Store (newStoreName, newMinCust, newMaxCust, newAvgCustSale);
+    Store.renderNew(newStore);
+  }
+  event.target.newstorelocation.value = null;
+  event.target.min.value = null;
+  event.target.max.value = null;
+  event.target.avg.value = null;
 });
+
+//capture values. decide if name value relates to existing row thru id
+// if it does exist, get that object, pass thru renderUpdate(object that exists, min, max, avg)
+// formEl.addEventListener('submit', function(event){
+//   event.preventDefault();
+//   var newStoreName = event.target.newstorelocation.value;
+//   var newMinCust = parseInt(event.target.min.value);
+//   var newMaxCust = parseInt(event.target.max.value);
+//   var newAvgCustSale = parseFloat(event.target.avg.value);
+//   // console.log(newStoreName);
+//   //Take this newShop object and hand into renderNew method
+// });
+// if (newStoreName == this.id) {
+//   Store.renderUpdate(newStoreName, min, max, average);
+// } else {
+//   Store.renderNew(newShop);
+// };
