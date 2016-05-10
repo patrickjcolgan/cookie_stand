@@ -26,6 +26,7 @@ var seaTac = new Store('SeaTac', 6, 24, 1.2);
 var southCenter = new Store('South Center', 11, 38, 1.9);
 var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
+
 //render is a property of the store constructor object, NOT each instance
 //1.run generate hourly for each store
 //2.get the table by id (done)
@@ -95,21 +96,23 @@ Store.renderNew = function(obj) {
 Store.renderUpdate = function(shop, min, max, avg) {
   var trEl = document.getElementById(shop.id);
   console.log(trEl);
+  console.log(pikePlace);
   shop.minNumCust = min;
   shop.maxNumCust = max;
   shop.avgSales = avg;
   shop.hourlySales = [];
   shop.totalSales = 0;
-  // shop.generateHourly();//just calling generateHourly ON the instance / moving this to constructor
+  shop.generateHourly();//just calling generateHourly ON the instance / moving this to constructor
 
   for (var i = 0; i < shop.hourlySales.length; i++) { //why not hoursOpen.length?
     trEl.childNodes[i + 1].textContent = shop.hourlySales[i];
   }
   trEl.childNodes[trEl.childNodes.length - 1].textContent = shop.totalSales;
+  console.log(shop.totalSales);
 };
 document.getElementById('form').addEventListener('submit', function(event){
   event.preventDefault();
-  var exists = false;
+  var exists = false;//run update if existing store; if stays false, run renderNew
   var newStoreName = event.target.newstorelocation.value;
   var newMinCust = parseInt(event.target.min.value);
   var newMaxCust = parseInt(event.target.max.value);
@@ -123,7 +126,9 @@ document.getElementById('form').addEventListener('submit', function(event){
   }
   if (exists === true) {
     console.log('true');
-    Store.renderUpdate(cookieStores[i], min, max, avg);
+    // Store.renderUpdate(cookieStores[i], min, max, avg);
+    Store.renderUpdate(cookieStores[i], newMinCust, newMaxCust, newAvgCustSale);
+    console.log(pikePlace);
   } else {
     console.log('false');
     var newStore = new Store (newStoreName, newMinCust, newMaxCust, newAvgCustSale);
