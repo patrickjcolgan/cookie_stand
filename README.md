@@ -44,3 +44,9 @@ Instead, render is a property of the store constructor object, NOT each instance
 
 + Added a Boolean value to Event Listener
 + Then, created IF/ELSE to determine if Store.renderNew() or Store.renderUpdate() should be called
+
+###N12
++ Salmon Event links now open in a new tab
++ Sales.html footer included
+  + Increased margin between table and footer to allow space for new store inputs
++ :hover :visited :links change to appropriate colors according to Style-Guide
