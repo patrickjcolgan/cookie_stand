@@ -50,3 +50,7 @@ Instead, render is a property of the store constructor object, NOT each instance
 + Sales.html footer included
   + Increased margin between table and footer to allow space for new store inputs
 + :hover :visited :links change to appropriate colors according to Style-Guide
++ moved tabelEl variable to top of app.js because it is global
++ Added space between functions in js for readability purpososes
++ Last step: publish to gh-pages
+  + Future considerations in CSS: work more with classes, less with id's to avoid redundant rules
