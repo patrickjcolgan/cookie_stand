@@ -1,5 +1,6 @@
 var hoursOpen = ['10am', '11am','12am','1pm','2pm','3pm','4pm', '5pm'];
 var cookieStores = [];
+var tableEl = document.getElementById('stores');
 
 function Store(name, min, max, avgSales) {
   this.name = name;
@@ -12,15 +13,18 @@ function Store(name, min, max, avgSales) {
   cookieStores.push(this); //pushes new Store instances into cookieStores array
   this.generateHourly();
 };
+
 Store.prototype.randomCustomer = function () {
   return Math.random() * (this.maxNumCust - this.minNumCust) + this.minNumCust;
 };
+
 Store.prototype.generateHourly = function() {
   for (var i = 0; i < hoursOpen.length; i++) {
     this.hourlySales.push(Math.floor(this.avgSales * this.randomCustomer(this.minNumCust, this.maxNumCust)));
     this.totalSales += this.hourlySales[i];
   }
 };
+
 var pikePlace = new Store('Pike Place', 17, 88, 5.2);
 var seaTac = new Store('SeaTac', 6, 24, 1.2);
 var southCenter = new Store('South Center', 11, 38, 1.9);
@@ -28,9 +32,6 @@ var bellevueSquare = new Store('Bellevue Square', 20, 48, 3.3);
 var alki = new Store('Alki', 3, 24, 2.6);
 
 //render is a property of the store constructor object, NOT each instance
-//1.run generate hourly for each store
-//2.get the table by id (done)
-var tableEl = document.getElementById('stores');
 (Store.render = function() {
   //emptyCell top-left of table
   var hoursRow = document.createElement('tr');
@@ -68,8 +69,8 @@ var tableEl = document.getElementById('stores');
     tableRow.appendChild(totalsData);
     tableEl.appendChild(tableRow);//appending to original tr
   }
-})();//bc only calling Store.render once on load, call it once on load (no longer avail in global scope bc we dont need it)
-// Store.render();
+})();//bc only calling Store.render once on load, (no longer avail in global scope bc we dont need it)
+
 Store.renderNew = function(obj) {
   var newRow = document.createElement('tr');
   newRow.id = obj.id;
@@ -86,12 +87,7 @@ Store.renderNew = function(obj) {
   newTotalTd.textContent = obj.totalSales;
   newRow.appendChild(newTotalTd);
   tableEl.appendChild(newRow);
-
-  // var newShop = new Store(newStoreName, newMinCust, newMaxCust, newAvgCustSale);
-  // newShop.generateHourly();//move to renderNew
 };
-// var formEl = document.getElementById('form');
-
 //STRETCH GOAL: UPDATE EXISTING STORE'S DATA
 Store.renderUpdate = function(shop, min, max, avg) {
   var trEl = document.getElementById(shop.id);
@@ -102,14 +98,15 @@ Store.renderUpdate = function(shop, min, max, avg) {
   shop.avgSales = avg;
   shop.hourlySales = [];
   shop.totalSales = 0;
-  shop.generateHourly();//just calling generateHourly ON the instance / moving this to constructor
+  shop.generateHourly();
 
-  for (var i = 0; i < shop.hourlySales.length; i++) { //why not hoursOpen.length?
+  for (var i = 0; i < shop.hourlySales.length; i++) {
     trEl.childNodes[i + 1].textContent = shop.hourlySales[i];
   }
   trEl.childNodes[trEl.childNodes.length - 1].textContent = shop.totalSales;
   console.log(shop.totalSales);
 };
+
 document.getElementById('form').addEventListener('submit', function(event){
   event.preventDefault();
   var exists = false;//run update if existing store; if stays false, run renderNew
@@ -139,20 +136,3 @@ document.getElementById('form').addEventListener('submit', function(event){
   event.target.max.value = null;
   event.target.avg.value = null;
 });
-
-//capture values. decide if name value relates to existing row thru id
-// if it does exist, get that object, pass thru renderUpdate(object that exists, min, max, avg)
-// formEl.addEventListener('submit', function(event){
-//   event.preventDefault();
-//   var newStoreName = event.target.newstorelocation.value;
-//   var newMinCust = parseInt(event.target.min.value);
-//   var newMaxCust = parseInt(event.target.max.value);
-//   var newAvgCustSale = parseFloat(event.target.avg.value);
-//   // console.log(newStoreName);
-//   //Take this newShop object and hand into renderNew method
-// });
-// if (newStoreName == this.id) {
-//   Store.renderUpdate(newStoreName, min, max, average);
-// } else {
-//   Store.renderNew(newShop);
-// };

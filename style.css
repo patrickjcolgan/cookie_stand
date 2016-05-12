@@ -169,6 +169,19 @@ table tr th {
   border-top: 1px solid #999;
   border-bottom: 2px solid #212121;
 }
+.table {
+  padding-bottom: 40px;
+}
+.sales_footer {
+  box-sizing: content-box;
+  margin-top: 40px;
+  /*padding: 15px;*/
+  font-size: 16px;
+  /*max-height: 90px;*/
+  text-align: center; /* Must come before text color property*/
+  background-color: #B6B6B6;
+  color: #FFFFFF;
+}
 /*#store tr {
   border-bottom: 1px solid #b6b6b6;
 }*/
